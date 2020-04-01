@@ -1,0 +1,6 @@
+{
+  "port": "3009",
+  "jwtPrivateKey": "1234",
+  "requiresAuth": true,
+  "db": "mongodb://localhost:27017/realestate_test"
+}

@@ -1,0 +1,30 @@
+version: "3.7"
+
+services:
+  dev:
+    build:
+      context: .
+    env_file:
+      - .env
+    image: node:11
+    restart: always
+    container_name: realestate_api
+    volumes:
+      - ./src:/var/www/api
+      - /var/www/api/node_modules
+    ports:
+      - 3001:3001
+    depends_on:
+      - mongodb
+    environment:
+      - realestate_jwtPrivateKey=${JWT_PRIVATE_KEY}
+      - NODE_ENV=development
+  mongodb:
+    image: mongo:latest
+    container_name: realestate_db
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb_data:/data/db
+volumes:
+  mongodb_data:

@@ -1,0 +1,14 @@
+{
+  "db": "mongodb://realestate_db/realestate",
+  "port": "3001",
+  "jwtPrivateKey": "",
+  "requiresAuth": true,
+  "google": {
+    "jwt": {
+      "publicKeysUrl": "https://www.googleapis.com/robot/v1/metadata/x509/securetoken@system.gserviceaccount.com"
+    }
+  },
+  "upload": {
+    "path": "public/upload"
+  }
+}
