@@ -14,12 +14,12 @@ const data = [
         location: {
           coordinates: {
             lat: "-73.766493",
-            lng: "41.8777632"
-          }
+            lng: "41.8777632",
+          },
         },
         price: 1000000,
         currency: "USD",
-        images: []
+        images: [],
       },
       {
         title: "Las Vegas Empire",
@@ -27,14 +27,14 @@ const data = [
         location: {
           coordinates: {
             lat: "-73.766493",
-            lng: "41.8777632"
-          }
+            lng: "41.8777632",
+          },
         },
         price: 2000000,
         currency: "EUR",
-        images: []
-      }
-    ]
+        images: [],
+      },
+    ],
   },
   {
     name: "Villas",
@@ -45,12 +45,12 @@ const data = [
         location: {
           coordinates: {
             lat: "-73.766493",
-            lng: "41.8777632"
-          }
+            lng: "41.8777632",
+          },
         },
         price: 3000000,
         currency: "EUR",
-        images: []
+        images: [],
       },
       {
         title: "Chicago Empire",
@@ -58,14 +58,14 @@ const data = [
         location: {
           coordinates: {
             lat: "-73.766493",
-            lng: "41.8777632"
-          }
+            lng: "41.8777632",
+          },
         },
         price: 4000000,
         currency: "USD",
-        images: []
-      }
-    ]
+        images: [],
+      },
+    ],
   },
   {
     name: "Offices",
@@ -76,12 +76,12 @@ const data = [
         location: {
           coordinates: {
             lat: "-73.766493",
-            lng: "41.8777632"
-          }
+            lng: "41.8777632",
+          },
         },
         price: 5000000,
         currency: "USD",
-        images: []
+        images: [],
       },
       {
         title: "Washington DC Empire",
@@ -89,15 +89,15 @@ const data = [
         location: {
           coordinates: {
             lat: "-73.766493",
-            lng: "41.8777632"
-          }
+            lng: "41.8777632",
+          },
         },
         price: 6000000,
         currency: "EUR",
-        images: []
-      }
-    ]
-  }
+        images: [],
+      },
+    ],
+  },
 ];
 
 async function seed() {
@@ -107,7 +107,7 @@ async function seed() {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useCreateIndex: true,
-    useFindAndModify: false
+    useFindAndModify: false,
   });
 
   await Property.deleteMany({});
@@ -116,21 +116,21 @@ async function seed() {
 
   for (let category of data) {
     const { _id: categoryId } = await new Category({
-      name: category.name
+      name: category.name,
     }).save();
     const properties = category.properties.map(property => ({
       ...property,
-      category: { _id: categoryId, name: category.name }
+      category: { _id: categoryId, name: category.name },
     }));
 
     await Property.insertMany(properties);
   }
 
   const user = await new User({
-    name: "amber",
-    email: "admin@amber.com",
+    name: "appname",
+    email: "admin@appname.com",
     password: "12345",
-    isAdmin: true
+    isAdmin: true,
   });
 
   const salt = await bcrypt.genSalt(10);

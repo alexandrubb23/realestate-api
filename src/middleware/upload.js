@@ -9,15 +9,12 @@ const config = require("config");
  * @param {function} next
  */
 module.exports = (req, res, next) => {
-  const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-      cb(null, config.get("upload.path"));
-    }
-  });
+  const options = {
+    destination: (req, file, cb) => cb(null, config.get("upload.path")),
+  };
 
+  const storage = multer.diskStorage(options);
   const upload = multer({ storage }).single("file");
 
-  return upload(req, res, () => {
-    return next();
-  });
+  return upload(req, res, () => next());
 };

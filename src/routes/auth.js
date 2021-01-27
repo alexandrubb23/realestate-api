@@ -15,10 +15,14 @@ router.post("/", async (req, res) => {
   if (error) return res.status(400).send(error.details[0].message);
 
   let user = await User.findOne({ email: req.body.email });
-  if (!user) return res.status(400).send("Invalid email or password.");
+
+  const invalidEmailOrPassword = () =>
+    res.status(400).send("Invalid email or password.");
+
+  if (!user) return invalidEmailOrPassword();
 
   const validPassword = await bcrypt.compare(req.body.password, user.password);
-  if (!validPassword) res.status(400).send("Invalid email or password.");
+  if (!validPassword) invalidEmailOrPassword();
 
   const token = user.generateAuthToken();
   res.send(token);
@@ -32,15 +36,8 @@ router.post("/", async (req, res) => {
  */
 function validate(req) {
   const schema = Joi.object({
-    email: Joi.string()
-      .min(5)
-      .max(50)
-      .required()
-      .email(),
-    password: Joi.string()
-      .min(5)
-      .max(255)
-      .required()
+    email: Joi.string().min(5).max(50).required().email(),
+    password: Joi.string().min(5).max(255).required(),
   });
 
   return schema.validate(req);

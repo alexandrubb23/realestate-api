@@ -17,7 +17,7 @@ services:
     depends_on:
       - mongodb
     environment:
-      - realestate_jwtPrivateKey=${JWT_PRIVATE_KEY}
+      - realestate_jwtPrivateKey=$${JWT_PRIVATE_KEY}
       - NODE_ENV=development
   mongodb:
     image: mongo:latest
