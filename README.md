@@ -1,14 +1,14 @@
 # Real Estate RESTful API
 
-A small Node application according with the request
+A small Node application according with the request.
 
 ## Getting Started
 
-In order to run this app, please follow each step from down below
+In order to run this app you will need to follow few steps, as follow:
 
 ### Prerequisites
 
-Open your terminal and cloning the project
+Open your terminal and cloning the project:
 
 ```
 git clone https://github.com/alexandrubb23/realestate-api.git
@@ -16,15 +16,15 @@ git clone https://github.com/alexandrubb23/realestate-api.git
 
 ### Installing
 
-In order to run this app on your local machine, head over to [Docker.com](https://www.docker.com/products/docker-desktop) donwload it and install it
+In order to run this app on your local machine, head over to [Docker.com](https://www.docker.com/products/docker-desktop) donwload it and install it.
 
-After you have installed Docker navigate to the app folder
+After you have installed Docker navigate to the app folder:
 
 ```
 cd realestate-api
 ```
 
-Before starting building the project, you have to create a .env file
+Before starting building the project, you have to create a .env file:
 
 ```
 cp .env.example .env
@@ -38,7 +38,7 @@ Now we are ready and we can tell Docker to mount our app in a container
 docker-compose up -d --build
 ```
 
-After Docker is finishing building our app, open your browser and type
+After Docker is finishing building our app, open your browser and type:
 
 ```
 http://localhost:3001/
@@ -46,13 +46,21 @@ http://localhost:3001/
 
 You should see **Cannot GET /**
 
-Is time to populate our database with some dummy data so, navigate to src folder and run
+Is time to populate our database with some dummy data so, navigate to src folder and run:
 
 ```
+npm i
 node seed.js
 ```
 
-For example by typing **/api/categories** you'll see all the categories we have just created
+This step will also create a dummy user for us, as follow:
+
+```
+username: admin@appname.com
+password: 12345
+```
+
+For example by typing **/api/categories** you'll see all the categories we have just created:
 
 ```
 http://localhost:3001/api/categories
@@ -69,25 +77,27 @@ http://localhost:3001/api/categories
 
 ## Automate testing
 
-The app is using unit and integration testing
+The app is using unit and integration tests.
 
 ### Running the tests
 
-In order to run the tests, you have to install all the dependecies on your local machine
+In order to run the tests, you have to install all the dependecies on your local machine.
 
-From the app directory
+From the app directory:
 
 ```
 cd src
 ```
 
-Install all dependencies
+Skip this step if you already did it.
+
+Install all dependencies:
 
 ```
-npm install
+npm i
 ```
 
-And run the tests
+And run the tests:
 
 ```
 npm test
